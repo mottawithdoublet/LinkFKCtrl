@@ -1,0 +1,18 @@
+listJointParent = cmds.listConnections('JNTset')
+listControl= cmds.listConnections('CTRset')
+size=(len(listJointParent))
+counter=0
+for cont in listJointParent:
+    selectedJoint = listJointParent[counter]
+    selectedControl = listControl[counter]
+    cmds.parentConstraint(selectedControl,selectedJoint,mo=True)
+    counter+=1
+    
+cmds.select ("JNTset")
+cmds.ls(sl=True)
+cmds.sets(rm="JNTset")
+cmds.select ("CTRset")
+cmds.ls(sl=True)
+cmds.sets(rm="CTRset")
+cmds.delete("JNTset","CTRset")
+cmds.select (cl=True)
