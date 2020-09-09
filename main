@@ -1,13 +1,17 @@
+#Based of existing Sets
 listJointParent = cmds.listConnections('JNTset')
 listControl= cmds.listConnections('CTRset')
 size=(len(listJointParent))
 counter=0
+#For each element in eahc list do:
 for cont in listJointParent:
+    #Parents constraints each Joint and control
     selectedJoint = listJointParent[counter]
     selectedControl = listControl[counter]
     cmds.parentConstraint(selectedControl,selectedJoint,mo=True)
     counter+=1
     
+#Cleans up and controls
 cmds.select ("JNTset")
 cmds.ls(sl=True)
 cmds.sets(rm="JNTset")
